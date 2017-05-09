@@ -5,12 +5,21 @@ Item {
     id: coverFlow
 
     property ListModel model
-    property int itemCount: 5
+    property int itemCount;
 
-//    nextItem
-//    preItem
-//    toItem
+    function nextItem() {
+        pathView.incrementCurrentIndex();
+    }
 
+    function preItem() {
+        pathView.decrementCurrentIndex();
+    }
+
+    function toItem(index) {
+        if (index <= coverFlow.itemCount && pathView.currentIndex !== index) {
+            pathView.currentIndex = index;
+        }
+    }
 
     PathView {
         id: pathView
@@ -84,8 +93,8 @@ Item {
                         width: delegateItem.width
                         height: delegateItem.height
                         gradient: Gradient {
-                            GradientStop { position: 0.0; color: Qt.rgba(0, 0, 0, 0.1) }
-                            GradientStop { position: 0.4; color: Qt.rgba(0, 0 ,0, 1) }
+                            GradientStop { position: 0.0; color: Qt.rgba(0.1, 0.1, 0.1, 0.0) }
+                            GradientStop { position: 0.5; color: Qt.rgba(1.0, 1.0 ,1.0, 1.0) }
                         }
                     }
                 }
